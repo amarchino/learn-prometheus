@@ -16,13 +16,47 @@ services:
     command:
       - '--path.rootfs=/host'
     pid: host
-#    restart: unless-stopped
     volumes:
       - '/:/host:ro,rslave'
     ports:
       - 9100:9100
     networks:
       - prometheus
+  python_counter:
+    build:
+      context: client-python
+      dockerfile: ./Dockerfile
+    image: marchino/prometheus.python
+    container_name: python_counter
+    command:
+      - '/usr/src/app/counter.py'
+    ports:
+      - 8000:8000
+      - 8001:8001
+  python_gauge:
+    image: marchino/prometheus.python
+    container_name: python_gauge
+    command:
+      - '/usr/src/app/gauge.py'
+    ports:
+      - 8010:8000
+      - 8011:8001
+  python_histogram:
+    image: marchino/prometheus.python
+    container_name: python_histogram
+    command:
+      - '/usr/src/app/histogram.py'
+    ports:
+      - 8020:8000
+      - 8021:8001
+  python_summary:
+    image: marchino/prometheus.python
+    container_name: python_summary
+    command:
+      - '/usr/src/app/summary.py'
+    ports:
+      - 8030:8000
+      - 8031:8001
 networks:
   prometheus:
 
