@@ -22,6 +22,7 @@ services:
       - 9100:9100
     networks:
       - prometheus
+  # Python apps
   python_counter:
     build:
       context: client-python
@@ -33,6 +34,8 @@ services:
     ports:
       - 8000:8000
       - 8001:8001
+    networks:
+      - prometheus
   python_gauge:
     image: marchino/prometheus.python
     container_name: python_gauge
@@ -41,6 +44,8 @@ services:
     ports:
       - 8010:8000
       - 8011:8001
+    networks:
+      - prometheus
   python_histogram:
     image: marchino/prometheus.python
     container_name: python_histogram
@@ -49,6 +54,8 @@ services:
     ports:
       - 8020:8000
       - 8021:8001
+    networks:
+      - prometheus
   python_summary:
     image: marchino/prometheus.python
     container_name: python_summary
@@ -57,6 +64,8 @@ services:
     ports:
       - 8030:8000
       - 8031:8001
+    networks:
+      - prometheus
 networks:
   prometheus:
 

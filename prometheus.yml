@@ -17,7 +17,6 @@ scrape_configs:
   scrape_timeout: 10s
   metrics_path: /metrics
   scheme: http
-  follow_redirects: true
   static_configs:
   - targets:
     - localhost:9090
@@ -29,3 +28,10 @@ scrape_configs:
   static_configs:
   - targets:
     - host.docker.internal:9182
+- job_name: prom_python
+  static_configs:
+  - targets:
+    - python_counter:8001
+    - python_gauge:8001
+    - python_histogram:8001
+    - python_summary:8001
