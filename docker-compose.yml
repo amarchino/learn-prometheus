@@ -29,6 +29,8 @@ services:
       dockerfile: ./Dockerfile
     image: marchino/prometheus.python
     container_name: python_counter
+    volumes:
+      - './client-python:/usr/src/app:ro'
     command:
       - '/usr/src/app/counter.py'
     ports:
@@ -39,6 +41,8 @@ services:
   python_gauge:
     image: marchino/prometheus.python
     container_name: python_gauge
+    volumes:
+      - './client-python:/usr/src/app:ro'
     command:
       - '/usr/src/app/gauge.py'
     ports:
@@ -49,6 +53,8 @@ services:
   python_histogram:
     image: marchino/prometheus.python
     container_name: python_histogram
+    volumes:
+      - './client-python:/usr/src/app:ro'
     command:
       - '/usr/src/app/histogram.py'
     ports:
@@ -59,6 +65,8 @@ services:
   python_summary:
     image: marchino/prometheus.python
     container_name: python_summary
+    volumes:
+      - './client-python:/usr/src/app:ro'
     command:
       - '/usr/src/app/summary.py'
     ports:
