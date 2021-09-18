@@ -14,7 +14,7 @@ def terminate(signal,frame):
     webServer.server_close()
     sys.exit(0)
 
-class HandleRequests(http.server.BaseHTTPRequestHandler):
+class HandleRequests(BaseHTTPRequestHandler):
 
     @REQUEST_RESPOND_TIME.time()
     def do_GET(self):
@@ -32,5 +32,5 @@ if __name__ == "__main__":
     signal.signal(signal.SIGTERM, terminate)
 
     start_http_server(METRICS_PORT)
-    server = http.server.HTTPServer(('0.0.0.0', APP_PORT), HandleRequests)
+    server = HTTPServer(('0.0.0.0', APP_PORT), HandleRequests)
     server.serve_forever()

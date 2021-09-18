@@ -74,6 +74,50 @@ services:
       - 8031:8001
     networks:
       - prometheus
+  # Go apps
+  go_counter:
+    build:
+      context: client-go
+      dockerfile: ./Dockerfile
+    image: marchino/prometheus.go
+    container_name: go_counter
+    command:
+      - '/app/counter'
+    ports:
+      - 8100:8000
+      - 8101:8001
+    networks:
+      - prometheus
+  go_gauge:
+    image: marchino/prometheus.go
+    container_name: go_gauge
+    command:
+      - '/app/gauge'
+    ports:
+      - 8110:8000
+      - 8111:8001
+    networks:
+      - prometheus
+  go_histogram:
+    image: marchino/prometheus.go
+    container_name: go_histogram
+    command:
+      - '/app//histogram'
+    ports:
+      - 8120:8000
+      - 8121:8001
+    networks:
+      - prometheus
+  go_summary:
+    image: marchino/prometheus.go
+    container_name: go_summary
+    command:
+      - '/app/summary'
+    ports:
+      - 8130:8000
+      - 8131:8001
+    networks:
+      - prometheus
 networks:
   prometheus:
 

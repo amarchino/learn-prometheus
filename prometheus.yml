@@ -35,3 +35,10 @@ scrape_configs:
     - python_gauge:8001
     - python_histogram:8001
     - python_summary:8001
+- job_name: prom_go
+  static_configs:
+  - targets:
+    - go_counter:8000
+    - go_gauge:8000
+    - go_histogram:8000
+    - go_summary:8000
