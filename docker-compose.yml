@@ -7,9 +7,14 @@ services:
     networks:
       - prometheus
     volumes:
-      - './prometheus.yml:/etc/prometheus/prometheus.yml:ro'
+      - './prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro'
+      - './prometheus/rules:/etc/prometheus/rules:ro'
     ports:
       - 9090:9090
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-admin-api'
+      - '--web.enable-lifecycle'
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
@@ -116,6 +121,15 @@ services:
     ports:
       - 8130:8000
       - 8131:8001
+    networks:
+      - prometheus
+  
+  # GRAFANA
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
     networks:
       - prometheus
 networks:
