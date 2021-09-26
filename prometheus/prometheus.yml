@@ -3,7 +3,10 @@ global:
   scrape_timeout: 10s
   evaluation_interval: 15s
 rule_files:
-  - "rules/*.yml"
+  # - "rules/*.yml"
+  - "rules/linuxrules.yml"
+  - "rules/webrules.yml"
+  - "rules/windowsrules.yml"
 alerting:
   alertmanagers:
   - static_configs:
