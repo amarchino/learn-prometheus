@@ -16,6 +16,10 @@ groups:
         for: 2m
         labels:
           severity: critical
+        annotations:
+          summary: 'Python app latency is over 5 seconds'
+          description: 'App latency of instance {{ $labels.instance }} of job {{ $labels.job }} is {{ $value }} for more than 2 minutes'
+          app_link: 'http://localhost:8030'
 
       - alert: AppLatencyAbove2sec
         expr: 2 < job:app_response_latency_seconds:rate1m < 5
