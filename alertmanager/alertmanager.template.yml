@@ -33,6 +33,31 @@ route:
             - match:
                 severity: warning
               receiver: windows-team-lead
+    # PEC Technologies
+    - match_re:
+        app_type: (python|go)
+      receiver: pec-admin
+      routes:
+        - match:
+            app_type: python
+          receiver: python-team-admin
+          routes:
+            - match:
+                severity: critical
+              receiver: python-team-manager
+            - match:
+                severity: warning
+              receiver: python-team-lead
+        - match:
+            app_type: go
+          receiver: go-team-admin
+          routes:
+            - match:
+                severity: critical
+              receiver: go-team-manager
+            - match:
+                severity: warning
+              receiver: go-team-lead
 
 receivers:
   - name: admin
@@ -59,3 +84,24 @@ receivers:
   - name: windows-team-lead
     email_configs:
     - to: 'windows-team-lead@example.com'
+  - name: pec-admin
+    email_configs:
+    - to: 'pec-admin@example.com'
+  - name: python-team-admin
+    email_configs:
+    - to: 'python-team-admin@example.com'
+  - name: python-team-manager
+    email_configs:
+    - to: 'python-team-manager@example.com'
+  - name: python-team-lead
+    email_configs:
+    - to: 'python-team-lead@example.com'
+  - name: go-team-admin
+    email_configs:
+    - to: 'go-team-admin@example.com'
+  - name: go-team-manager
+    email_configs:
+    - to: 'go-team-manager@example.com'
+  - name: go-team-lead
+    email_configs:
+    - to: 'go-team-lead@example.com'
