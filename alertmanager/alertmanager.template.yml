@@ -16,6 +16,8 @@ route:
         - match:
             app_type: linux
           receiver: linux-team-admin
+          group_by:
+            - category
           routes:
             - match:
                 severity: critical
