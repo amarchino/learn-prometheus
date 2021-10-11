@@ -8,6 +8,9 @@ global:
 route:
   # Fallback
   receiver: 'admin'
+  group_wait: 40s
+  group_interval: 5m
+  repeat_interval: 30m
   routes:
     - match_re:
         app_type: (linux|windows)
